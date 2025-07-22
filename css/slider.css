@@ -1,17 +1,150 @@
 /*--------------------------------------------------------------
 # Main Slider
 --------------------------------------------------------------*/
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top left, #fbe7d4, #fbead8 40%, #fcefe3);
+  background-size: cover;
+  position: relative;
+  
+}
+
+
+
 .main-slider {
   position: relative;
   display: block;
-  background-color: var(--tanspot-black);
+  background: radial-gradient(circle at center, #f7d9c4, #d89a6c); /* soft warm gradient */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   z-index: 91;
+  overflow: hidden;
 }
 
-.main-slider .swiper-slide {
-  position: relative;
-  background-color: var(--tanspot-black);
+
+/* Soft light center glow */
+.main-slider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+  z-index: 1;
 }
+
+/* Mandala pattern top-left */
+.main-slider::after {
+  content: "";
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.2) 0deg 10deg,
+    transparent 10deg 30deg
+  );
+  mask: radial-gradient(circle, white 80%, transparent 100%);
+  opacity: 0.2;
+  z-index: 0;
+}
+
+/* Extra Mandala bottom-right */
+/* Flower pattern overlay */
+.main-slider .flower-pattern {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 400px;
+  background: url('flower-pattern.svg') no-repeat center center;
+  background-size: contain;
+  opacity: 0.15;
+  animation: rotateFlower 40s linear infinite;
+  z-index: 0;
+}
+
+@keyframes rotateFlower {
+  0% { transform: translateX(-50%) rotate(0deg); }
+  100% { transform: translateX(-50%) rotate(360deg); }
+}
+
+
+
+.main-slider::after {
+  animation: rotateMandala 60s linear infinite;
+}
+
+/* Extra Mandala bottom-right */
+.main-slider .mandala-bottom {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  right: -120px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.15) 0deg 10deg,
+    transparent 10deg 30deg
+  );
+  mask: radial-gradient(circle, white 80%, transparent 100%);
+  opacity: 0.2;
+  z-index: 0;
+}
+@keyframes rotateMandala {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.main-slider::after {
+  animation: rotateMandala 60s linear infinite;
+}
+
+
+
+
+
+/* Extra Mandala bottom-right */
+.main-slider .mandala-bottom {
+  content: "";
+  position: absolute;
+  bottom: -120px;
+  right: -120px;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    rgba(255, 255, 255, 0.15) 0deg 10deg,
+    transparent 10deg 30deg
+  );
+  mask: radial-gradient(circle, white 80%, transparent 100%);
+  opacity: 0.2;
+  z-index: 0;
+}
+@keyframes rotateMandala {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.main-slider::after {
+  animation: rotateMandala 60s linear infinite;
+}
+
+
+
+
+
 
 .main-slider__pattern-bg {
   position: absolute;
@@ -25,6 +158,7 @@
   opacity: .02;
   z-index: -1;
 }
+
 
 .main-slider__bg-box {
   position: absolute;
@@ -43,7 +177,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(var(--tanspot-black-rgb), .60);
+ 
   z-index: 1;
 }
 
@@ -187,10 +321,34 @@
   -o-transition-delay: 1200ms;
   transition-delay: 1200ms;
 }
+.responsive-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 15px;  /* Default padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .responsive-container {
+    padding: 0px 10px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .responsive-container {
+    padding: 0px 8px;
+  }
+}
+
 
 .main-slider__title {
   position: relative;
-  font-size: 65px;
+  font-size: 40px;
   color: var(--tanspot-white);
   font-weight: 700;
   line-height: 1.2em;
@@ -261,22 +419,7 @@
   transition-delay: 1400ms;
 }
 
-.main-slider__btn-box {
-  position: relative;
-  display: block;
-  opacity: 0;
-  -webkit-transform: perspective(400px) rotateY(0deg) translateY(80px);
-  -ms-transform: perspective(400px) rotateY(0deg) translateY(80px);
-  transform: perspective(400px) rotateY(0deg) translateY(80px);
-  -webkit-transform-origin: bottom;
-  -ms-transform-origin: bottom;
-  transform-origin: bottom;
-  -webkit-transition: all 1500ms ease;
-  -moz-transition: all 1500ms ease;
-  -ms-transition: all 1500ms ease;
-  -o-transition: all 1500ms ease;
-  transition: all 1500ms ease;
-}
+
 
 .main-slider__btn-box .thm-btn::before,
 .main-slider__btn-box .thm-btn::after {

@@ -1,0 +1,48 @@
+/* Desktop Styling: screens wider than 768px */
+@media (min-width: 769px) {
+  #menuLinks {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  #menuLinks li {
+    margin: 0 30px;
+    border-left: 1px solid #333;
+    padding-left: 30px;
+    text-align: left;
+  }
+  .mobile-toggle,
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Mobile Styling: screens 768px and below */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: block !important;
+  }
+  #menuLinks {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    width: 100%;
+    padding-top: 10px;
+    align-items: center;
+  }
+  #menuLinks li {
+    border: none;
+    margin: 10px 0;
+    padding-left: 0;
+    text-align: center;
+    width: 100%;
+  }
+  .mobile-only {
+    display: none;
+  }
+  .responsive-padding {
+    padding: 40px 20px !important; /* or 0 if edge-to-edge is preferred */
+  }
+}
