@@ -35,7 +35,8 @@
          <div
             style="max-width:1200px; margin:auto; padding:0 15px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
             <!-- LEFT: CONTACT INFO -->
-            <div  class="contact-info" style="flex:1; font-size:13px; color:#ff8c00 ; display:flex; gap:20px; align-items:center;">
+            <div class="contact-info"
+               style="flex:1; font-size:13px; color:#ff8c00 ; display:flex; gap:20px; align-items:center;">
                <div><i class="fas fa-phone-alt"></i> +91-9876543210</div>
                <div><i class="fas fa-envelope"></i> support@pinddaanpuja.com</div>
             </div>
@@ -49,7 +50,8 @@
             <!-- RIGHT: LANGUAGE & SIGN IN -->
             <div style="flex:1; display:flex; justify-content:flex-end; align-items:center; gap:15px;"
                class="desktop-only">
-               <select id="languageSwitcher" style="font-size:13px; padding:5px 8px; border:1px solid #ccc; border-radius:4px;">
+               <select id="languageSwitcher"
+                  style="font-size:13px; padding:5px 8px; border:1px solid #ccc; border-radius:4px;">
                   <option value="en">English</option>
                   <option value="hi">हिन्दी</option>
                </select>
@@ -63,8 +65,10 @@
             </div>
          </div>
       </div>
+
       <!-- NAVIGATION BAR -->
-      <div style="background-color:#f5f5f5; border-top:1px solid #ccc; border-bottom:1px solid #ccc;">
+      <div class="responsive-padding2"
+         style="background-color:#f5f5f5; border-top:1px solid #ccc; border-bottom:1px solid #ccc;    padding: 10px">
          <div class="responsive-container"
             style="max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
             <!-- NAV LINKS -->
@@ -74,8 +78,8 @@
                   <a href="#home" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">Home</a>
                </li>
                <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
-                  <a href="#about" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">🙏
-                     About Pandit Ji</a>
+                  <a href="about.html" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">🙏
+                     About Us</a>
                </li>
                <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
                   <a href="#services" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">📜
@@ -105,70 +109,119 @@
          </div>
       </div>
       <!-- TOGGLE SCRIPT -->
+      <section class="hero-slider">
+
+
+         <div class="slider">
+            <div class="shine"></div>
+            <div class="slide" data-img="banner2.jpg"></div>
+            <div class="slide" data-img="banner3.jpg"></div>
+         </div>
+
+         <!-- GSAP -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+         <script>
+            const sliderSection = document.querySelector('.hero-slider');
+            const slides = sliderSection.querySelectorAll('.slide');
+            let current = -1;
+
+            // 🔁 Get responsive grid size based on screen width
+            function getGridSize() {
+               if (window.innerWidth <= 480) {
+                  return { cols: 2, rows: 2 };
+               } else if (window.innerWidth <= 768) {
+                  return { cols: 3, rows: 3 };
+               } else {
+                  return { cols: 6, rows: 4 };
+               }
+            }
+
+            // 🔄 Create image tiles with dynamic cols & rows
+            function createTiles(slide) {
+               slide.innerHTML = '';
+               const img = slide.getAttribute('data-img');
+               const { cols, rows } = getGridSize();
+
+               for (let y = 0; y < rows; y++) {
+                  for (let x = 0; x < cols; x++) {
+                     const tile = document.createElement('div');
+                     tile.classList.add('tile');
+                     tile.style.backgroundImage = `url(${img})`;
+                     tile.style.backgroundSize = `${cols * 100}% ${rows * 100}%`;
+                     tile.style.backgroundPosition = `${(cols === 1 ? 0 : (100 * x) / (cols - 1))}% ${(rows === 1 ? 0 : (100 * y) / (rows - 1))}%`;
+                     slide.appendChild(tile);
+                  }
+               }
+            }
+
+            // 📦 Create tiles for all slides
+            slides.forEach(createTiles);
+
+            // 🎞️ Slider animation function
+            function showSlide(index) {
+               const nextSlide = slides[index];
+               nextSlide.classList.add('active');
+               const tiles = nextSlide.querySelectorAll('.tile');
+
+               gsap.fromTo(tiles,
+                  {
+                     opacity: 0,
+                     scale: 0.4,
+                     x: () => gsap.utils.random(-150, 150),
+                     y: () => gsap.utils.random(-150, 150),
+                     rotate: () => gsap.utils.random(-90, 90)
+                  },
+                  {
+                     opacity: 1,
+                     x: 0,
+                     y: 0,
+                     scale: 1,
+                     rotate: 0,
+                     duration: 1.5,
+                     stagger: { amount: 0.7, from: "random" },
+                     ease: "power4.out"
+                  }
+               );
+
+               setTimeout(() => {
+                  current = index;
+                  sliderSection.querySelector('.slider').style.background =
+                     `url(${nextSlide.getAttribute('data-img')}) center/cover no-repeat`;
+                  nextSlide.classList.remove('active');
+               }, 1500);
+            }
+
+            // 🔁 Auto-change slides every 5 seconds
+            setInterval(() => {
+               let next = (current + 1) % slides.length;
+               showSlide(next);
+            }, 5000);
+
+            // 🌸 Falling Flowers + Leaves
+            const elements = ['🌸', '🌺', '🍃', '🍂', '🌼', '💮'];
+
+            function createFalling() {
+               const el = document.createElement('div');
+               el.classList.add('falling');
+               el.textContent = elements[Math.floor(Math.random() * elements.length)];
+               el.style.left = Math.random() * 100 + 'vw';
+               el.style.fontSize = (18 + Math.random() * 20) + 'px';
+               el.style.animationDuration = (3 + Math.random() * 5) + 's';
+               el.style.transform = `rotate(${Math.random() * 360}deg)`;
+               sliderSection.appendChild(el);
+
+               setTimeout(() => {
+                  el.remove();
+               }, 8000);
+            }
+
+            setInterval(createFalling, 350);
+         </script>
+
+      </section>
 
       <!--Main Slider Start-->
-      <section class="main-slider" id="home">
-         <div class="swiper-container thm-swiper__slider" data-swiper-options='{
-               "slidesPerView": 1,
-               "loop": true,
-               "effect": "fade",
-               "pagination": {
-               "el": "#main-slider-pagination",
-               "type": "bullets",
-               "clickable": true
-               },
-               "navigation": {
-               "nextEl": "#main-slider__swiper-button-next",
-               "prevEl": "#main-slider__swiper-button-prev"
-               },
-               "autoplay": {
-               "delay": 8000
-               }
-               }'>
-               
-            <div class="swiper-wrapper">
-               <!-- Slide 1 -->
-               <!-- Slide 1 -->
-                 <div class="mandala-bottom"></div>
-  
-               <div class="swiper-slide">
-                
-                  <div class="main-slider__bg-box">
-                     <div class="main-slider__bg" style="background-image: url(images/puja-slider-1.jpg);"></div>
-                  </div>
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-xl-12">
-                           <div class="main-slider__content" style="font-family: 'Poppins', sans-serif;">
-                              <h4 class="main-slider__sub-title" style="font-family: 'Playfair Display', serif;">Pind
-                                 Daan & Shraddh Rituals
-                              </h4>
-                              <h2 class="main-slider__title"
-                                 style="font-family: 'Playfair Display', serif; ">
-                                 Bring Peace to Ancestors<br><span>Through Sacred Vedic Karma</span>
-                              </h2>
-                              <p class="main-slider__text">Help your ancestors attain moksha with proper rituals guided
-                                 by experienced Pandits.
-                              </p>
-                              <div class="main-slider__btn-box">
-                                 <a href="#" class="thm-btn">Book Now <span><i class="icon-right-arrow"></i></span></a>
-                              </div>
-                              <div class="main-slider__map">
-                                 <img src="images/shapes/kalash-icon.png" alt="" class="float-bob-y" />
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <!-- Slide 2 -->
-          
-               <!-- Slide 3 -->
-             
-            </div>
-            <div class="swiper-pagination" id="main-slider-pagination"></div>
-         </div>
-      </section>
+
       <section style="background: #fdfdfd; padding: 40px 15px; font-family: 'Segoe UI', sans-serif;">
          <div style="max-width: 1000px; margin: auto; text-align: center;">
             <h2 style="font-size: 28px; color: #a30000; margin-bottom: 10px;">🔍 Find Your Puja</h2>
@@ -229,9 +282,9 @@
                   <!-- Card Start -->
                   <div
                      style="background: #fff8f0; border: 1px solid #ffd6c0; width: 300px; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,0.08); transition: transform 0.3s;">
-                     <!--<img src="./images/services/pind-dan.jpg" alt="Pind Daan"
-                        style="width: 100%; height: 180px; object-fit: cover;">--><br>
-                        <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
+                     <img src="./images/services/pind-dan.png" alt="Pind Daan"
+                        style="width: 100%; height: 180px; object-fit: cover;">
+
                      <div style="padding: 16px;">
                         <h3 style="color: #a30000; font-size: 18px; margin-bottom: 8px;">Pind Daan – Varanasi</h3>
                         <p style="font-size: 14px; color: #555;">Performed by expert Pandits at sacred Ganga Ghats in
@@ -253,9 +306,9 @@
                   </div>
                   <div
                      style="background: #fff8f0; border: 1px solid #ffd6c0; width: 300px; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,0.08); transition: transform 0.3s;">
-                     <!--<img src="./images/services/pind-dan.jpg" alt="Pind Daan"
-                        style="width: 100%; height: 180px; object-fit: cover;">--><br>
-                        <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
+                     <img src="./images/services/Narayanbali.png" alt="Pind Daan"
+                        style="width: 100%; height: 180px; object-fit: cover;">
+
                      <div style="padding: 16px;">
                         <h3 style="color: #a30000; font-size: 18px; margin-bottom: 8px;">Narayan bali </h3>
                         <p style="font-size: 14px; color: #555;">Performed by expert Pandits at sacred Ganga Ghats in
@@ -277,9 +330,9 @@
                   </div>
                   <div
                      style="background: #fff8f0; border: 1px solid #ffd6c0; width: 300px; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,0.08); transition: transform 0.3s;">
-                      <!--<img src="./images/services/pind-dan.jpg" alt="Pind Daan"
-                        style="width: 100%; height: 180px; object-fit: cover;">--><br>
-                        <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
+                     <img src="./images/services/rudrabhishek.png" alt="Pind Daan"
+                        style="width: 100%; height: 180px; object-fit: cover;">
+
                      <div style="padding: 16px;">
                         <h3 style="color: #a30000; font-size: 18px; margin-bottom: 8px;">Rudrabhishek</h3>
                         <p style="font-size: 14px; color: #555;">Performed by expert Pandits at sacred Ganga Ghats in
@@ -301,9 +354,9 @@
                   </div>
                   <div
                      style="background: #fff8f0; border: 1px solid #ffd6c0; width: 300px; border-radius: 16px; overflow: hidden; box-shadow: 0 6px 16px rgba(0,0,0,0.08); transition: transform 0.3s;">
-                     <!--<img src="./images/services/pind-dan.jpg" alt="Pind Daan"
-                        style="width: 100%; height: 180px; object-fit: cover;">--><br>
-                        <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
+                     <img src="./images/services/Asthi-Visarjan.png" alt="Pind Daan"
+                        style="width: 100%; height: 180px; object-fit: cover;">
+                     <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
                      <div style="padding: 16px;">
                         <h3 style="color: #a30000; font-size: 18px; margin-bottom: 8px;">Asthi Visarjan</h3>
                         <p style="font-size: 14px; color: #555;">Performed by expert Pandits at sacred Ganga Ghats in
@@ -346,61 +399,91 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
                <!-- Example Card -->
                <div onclick="window.location.href='#'"
-                  style="cursor: pointer; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; transition: 0.3s; position: relative;">
-                  <div style="background: #f2e8dc; border-radius: 50%; padding: 15px; display: inline-block; margin-bottom: 20px;">
-   <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
-</div>
+                  style="cursor: pointer; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; transition: 0.3s; max-width: 320px; margin: auto;">
 
-                  <h3 style="color: #a30000; font-size: 22px; margin-bottom: 10px;">Pind Daan</h3>
-                  <p style="font-size: 14px; color: #555; min-height: 50px;">A sacred ritual for ancestral peace on the
-                     banks of holy rivers.</p>
-                  <a href="#"
-                     style="display: inline-block; margin-top: 18px; padding: 10px 25px; background-color: #a30000; color: white; border-radius: 30px; text-decoration: none; font-weight: 500;">Book
-                     Now</a>
-               </div>
-               <!-- Repeat for other rituals with changed href, img, and text -->
-               <!-- Narayan Bali -->
-               <div onclick="window.location.href='#'"
-                  style="cursor: pointer; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; transition: 0.3s;">
-                  <div
-                     style="background: #f2e8dc; border-radius: 50%; padding: 15px; display: inline-block; margin-bottom: 20px;">
-                    <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
+                  <!-- Top Image -->
+                  <img src="./images/services/pind-dan.png" alt="Pind Daan – Varanasi"
+                     style="width: 100%; height: 180px; display: block; object-fit: cover;" />
+
+
+                  <!-- Content -->
+                  <div style="padding: 20px;">
+                     <h3 style="color: #a30000; font-size: 20px; margin-bottom: 10px;">Pind Daan – Varanasi</h3>
+                     <p style="font-size: 14px; color: #555; min-height: 50px;">
+                        Performed by expert Pandits at sacred ghats for ancestral peace and moksha.
+                     </p>
+                     <a href="#"
+                        style="display: inline-block; margin-top: 15px; padding: 10px 25px; background-color: #a30000; color: white; border-radius: 30px; text-decoration: none; font-weight: 500;">
+                        Book Now
+                     </a>
                   </div>
-                  <h3 style="color: #a30000; font-size: 22px; margin-bottom: 10px;">Narayan Bali</h3>
-                  <p style="font-size: 14px; color: #555;">Performed to remove pitru dosha and offer peace to
-                     unsatisfied souls.</p>
-                  <a href="#"
-                     style="display: inline-block; margin-top: 18px; padding: 10px 25px; background-color: #a30000; color: white; border-radius: 30px; text-decoration: none; font-weight: 500;">Book
-                     Now</a>
                </div>
+
+
+
+               <div onclick="window.location.href='#'"
+                  style="cursor: pointer; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; transition: 0.3s; max-width: 320px; margin: auto;">
+
+                  <!-- Top Image -->
+                  <img src="./images/services/Narayanbali.png" alt="Narayan Bali Puja"
+                     style="width: 100%; height: 180px; display: block; object-fit: cover;" />
+
+                  <!-- Content -->
+                  <div style="padding: 20px;">
+                     <h3 style="color: #a30000; font-size: 20px; margin-bottom: 10px;">Narayan Bali Puja</h3>
+                     <p style="font-size: 14px; color: #555; min-height: 50px;">
+                        Special ritual to liberate souls from Pitru Dosha and untimely death karma.
+                     </p>
+                     <a href="#"
+                        style="display: inline-block; margin-top: 15px; padding: 10px 25px; background-color: #a30000; color: white; border-radius: 30px; text-decoration: none; font-weight: 500;">
+                        Book Now
+                     </a>
+                  </div>
+               </div>
+
+
                <!-- Rudrabhishek -->
                <div onclick="window.location.href='#'"
-                  style="cursor: pointer; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; transition: 0.3s;">
-                  <div
-                     style="background: #f2e8dc; border-radius: 50%; padding: 15px; display: inline-block; margin-bottom: 20px;">
-                     <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
+                  style="cursor: pointer; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; transition: 0.3s; max-width: 320px; margin: auto;">
+
+                  <!-- Top Image -->
+                  <img src="./images/services/rudrabhishek.png" alt="Rudrabhishek Puja"
+                     style="width: 100%; height: 180px; display: block; object-fit: cover;" />
+
+                  <!-- Content -->
+                  <div style="padding: 20px;">
+                     <h3 style="color: #a30000; font-size: 20px; margin-bottom: 10px;">Rudrabhishek Puja</h3>
+                     <p style="font-size: 14px; color: #555; min-height: 50px;">
+                        Powerful Shiva puja for inner peace, health, wealth, and protection from negativity.
+                     </p>
+                     <a href="#"
+                        style="display: inline-block; margin-top: 15px; padding: 10px 25px; background-color: #a30000; color: white; border-radius: 30px; text-decoration: none; font-weight: 500;">
+                        Book Now
+                     </a>
                   </div>
-                  <h3 style="color: #a30000; font-size: 22px; margin-bottom: 10px;">Rudrabhishek</h3>
-                  <p style="font-size: 14px; color: #555;">Powerful puja to please Lord Shiva and seek blessings of
-                     strength & peace.</p>
-                  <a href="#"
-                     style="display: inline-block; margin-top: 18px; padding: 10px 25px; background-color: #a30000; color: white; border-radius: 30px; text-decoration: none; font-weight: 500;">Book
-                     Now</a>
                </div>
+
                <!-- Asthi Visarjan -->
                <div onclick="window.location.href='#'"
-                  style="cursor: pointer; background: white; border-radius: 20px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; transition: 0.3s;">
-                  <div
-                     style="background: #f2e8dc; border-radius: 50%; padding: 15px; display: inline-block; margin-bottom: 20px;">
-                     <i class="fas fa-om" style="font-size: 40px; color: #a30000;"></i>
+                  style="cursor: pointer; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.08); text-align: center; transition: 0.3s; max-width: 320px; margin: auto;">
+
+                  <!-- Top Image -->
+                  <img src="./images/services/Asthi-Visarjan.png" alt="Asthi Visarjan"
+                     style="width: 100%; height: 180px; display: block; object-fit: cover;" />
+
+                  <!-- Content -->
+                  <div style="padding: 20px;">
+                     <h3 style="color: #a30000; font-size: 20px; margin-bottom: 10px;">Asthi Visarjan</h3>
+                     <p style="font-size: 14px; color: #555; min-height: 50px;">
+                        Holy ritual for immersing the ashes of the departed in sacred rivers for moksha.
+                     </p>
+                     <a href="#"
+                        style="display: inline-block; margin-top: 15px; padding: 10px 25px; background-color: #a30000; color: white; border-radius: 30px; text-decoration: none; font-weight: 500;">
+                        Book Now
+                     </a>
                   </div>
-                  <h3 style="color: #a30000; font-size: 22px; margin-bottom: 10px;">Asthi Visarjan</h3>
-                  <p style="font-size: 14px; color: #555;">Final immersion of ashes in sacred rivers as per Hindu
-                     customs.</p>
-                  <a href="#"
-                     style="display: inline-block; margin-top: 18px; padding: 10px 25px; background-color: #a30000; color: white; border-radius: 30px; text-decoration: none; font-weight: 500;">Book
-                     Now</a>
                </div>
+
                <!-- Pitradosh Nivaran Puja -->
             </div>
             <div style="text-align: center; margin-top: 60px;">
@@ -630,7 +713,20 @@
    </section>
    <section
       style="background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), url('./images/Puja-Samagri-Arrangement.png') no-repeat center center/cover; padding: 80px 20px; font-family: 'Segoe UI', sans-serif;">
-     
+      <center>
+         <div class="section-title__tagline-box">
+            <span class="section-title__tagline-border"></span>
+            <div class="section-title__shape-1">
+               <i class="fas fa-om"></i>
+            </div>
+            <h6 class="section-title__tagline">
+               <h6 class="section-title__tagline">Enquire About Your Puja Needs</h6>
+               <span class="section-title__tagline-border"></span>
+               <div class="section-title__shape-2">
+                  <i class="fas fa-om"></i>
+               </div>
+         </div>
+      </center>
       <div
          style="max-width: 1100px; margin: auto; background: rgba(255,255,255,0.25); backdrop-filter: blur(10px); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); padding: 40px 30px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
          <!-- Left -->
@@ -768,7 +864,7 @@
             <div class="section-title__shape-1">
                <i class="fas fa-om"></i>
             </div>
-            <h6 class="section-title__tagline"> FAQ</h6>
+            <h6 class="section-title__tagline"> Frequently Asked Questions</h6>
             <span class="section-title__tagline-border"></span>
             <div class="section-title__shape-2">
                <i class="fas fa-om"></i>
@@ -910,7 +1006,7 @@
                      <h3 class="footer-widget-two__title">Quick Links</h3>
                      <ul class="footer-widget-two__link list-unstyled">
                         <li><a href="index.html">🏠 Home</a></li>
-                        <li><a href="#">🙏 About Pandit Ji</a></li>
+                        <li><a href="about.html">🙏 About Us</a></li>
                         <li><a href="#">📜 Pooja Services</a></li>
                         <li><a href="#">📅 Book Now</a></li>
                         <li><a href="#">📸 Gallery</a></li>

@@ -50,11 +50,7 @@ body {
   line-height: 26px;
   font-weight: 400;
 }
- @media (max-width: 768px) {
-  .contact-info {
-    display: none !important;
-  }
-}
+
 body.locked {
   overflow: hidden;
 }

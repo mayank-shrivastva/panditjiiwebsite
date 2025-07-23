@@ -1,0 +1,186 @@
+<section class="hero-slider">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .hero-slider {
+      position: relative;
+      background: #000;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      display: flex;
+    }
+
+    .slider {
+      position: relative;
+      width: 90%;
+      height: 90%;
+      overflow: hidden;
+      border-radius: 15px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
+      background: url('banner1.jpg') center/cover no-repeat;
+      z-index: 1;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      z-index: 2;
+    }
+
+    .tile {
+      background-size: 600% 400%;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transform: scale(0.4) rotate(30deg);
+    }
+
+    /* Shine Effect */
+    .shine {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0));
+      transform: rotate(25deg);
+      animation: shineMove 6s infinite linear;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    @keyframes shineMove {
+      0% { transform: translateX(-100%) rotate(25deg); }
+      100% { transform: translateX(100%) rotate(25deg); }
+    }
+
+    /* Falling Elements (Flowers + Leaves) */
+    .hero-slider .falling {
+      position: absolute;
+      top: -10%;
+      font-size: 20px;
+      animation: fall linear forwards;
+      opacity: 0.95;
+      filter: drop-shadow(0 0 4px rgba(255,255,255,0.5));
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+      }
+    }
+  </style>
+
+  <div class="slider">
+    <div class="shine"></div>
+    <div class="slide" data-img="banner2.jpg"></div>
+    <div class="slide" data-img="banner3.jpg"></div>
+  </div>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+    const sliderSection = document.querySelector('.hero-slider');
+    const slides = sliderSection.querySelectorAll('.slide');
+    const cols = 6;
+    const rows = 4;
+    let current = -1;
+
+    // Create image tiles
+    function createTiles(slide) {
+      slide.innerHTML = '';
+      const img = slide.getAttribute('data-img');
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const tile = document.createElement('div');
+          tile.classList.add('tile');
+          tile.style.backgroundImage = `url(${img})`;
+          tile.style.backgroundPosition = `${(100 / (cols - 1)) * x}% ${(100 / (rows - 1)) * y}%`;
+          slide.appendChild(tile);
+        }
+      }
+    }
+    slides.forEach(createTiles);
+
+    // Slider animation
+    function showSlide(index) {
+      const nextSlide = slides[index];
+      nextSlide.classList.add('active');
+      const tiles = nextSlide.querySelectorAll('.tile');
+
+      gsap.fromTo(tiles,
+        {
+          opacity: 0,
+          scale: 0.4,
+          x: () => gsap.utils.random(-150, 150),
+          y: () => gsap.utils.random(-150, 150),
+          rotate: () => gsap.utils.random(-90, 90)
+        },
+        {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          scale: 1,
+          rotate: 0,
+          duration: 1.5,
+          stagger: { amount: 0.7, from: "random" },
+          ease: "power4.out"
+        }
+      );
+
+      setTimeout(() => {
+        current = index;
+        sliderSection.querySelector('.slider').style.background =
+          `url(${nextSlide.getAttribute('data-img')}) center/cover no-repeat`;
+        nextSlide.classList.remove('active');
+      }, 1500);
+    }
+    setInterval(() => {
+      let next = (current + 1) % slides.length;
+      showSlide(next);
+    }, 5000);
+
+    // Falling Elements (Flowers + Leaves)
+    const elements = ['🌸', '🌺', '🍃', '🍂', '🌼', '💮'];
+
+    function createFalling() {
+      const el = document.createElement('div');
+      el.classList.add('falling');
+      el.textContent = elements[Math.floor(Math.random() * elements.length)];
+      el.style.left = Math.random() * 100 + 'vw';
+      el.style.fontSize = (18 + Math.random() * 20) + 'px';
+      el.style.animationDuration = (3 + Math.random() * 5) + 's';
+      el.style.transform = `rotate(${Math.random() * 360}deg)`;
+      sliderSection.appendChild(el);
+
+      setTimeout(() => {
+        el.remove();
+      }, 8000);
+    }
+    setInterval(createFalling, 350);
+  </script>
+</section>
