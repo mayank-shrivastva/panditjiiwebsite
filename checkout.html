@@ -4,11 +4,15 @@
 <head>
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <title>About Us | PindDaanPuja - Book Pandit Ji for Haridwar Pind Daan & Rituals</title>
+   <!-- ✅ Updated title -->
+   <title>Home | PindDaanPuja - Book Pandit Ji for Haridwar Pind Daan & Rituals</title>
+   <!-- ✅ Add SEO meta description -->
    <meta name="description"
-      content="Learn more about PindDaanPuja, your trusted Vedic Puja service partner offering authentic rituals with experienced Pandits." />
+      content="Book experienced Pandit Ji online for Pind Daan, Shraddh, Tripindi, and other Vedic rituals in Haridwar, Gaya, and Prayagraj. Trusted by families worldwide." />
+   <!-- ✅ Add keywords (optional for basic SEO) -->
    <meta name="keywords"
-      content="About Pind Daan, Vedic Puja Service, Experienced Pandits, Authentic Rituals, Pind Daan Puja" />
+      content="Pind Daan, Haridwar Pandit, Book Pandit Online, Shraddh Puja, Gaya Pinddaan, Tripindi Shraddh, Hindu Rituals" />
+   <!-- ✅ Stylesheets -->
    <link rel="stylesheet" href="css/bootstrap.min.css" />
    <link rel="stylesheet" href="css/slider.css" />
    <link rel="stylesheet" href="css/footer.css" />
@@ -17,25 +21,33 @@
    <link rel="stylesheet" href="css/responsive.css" />
    <link rel="stylesheet" href="css/internal.css" />
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+   <!-- ✅ Font Awesome for icons -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <!-- Google Font -->
    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="custom-cursor">
    <div class="page-wrapper">
 
-      <!-- Header -->
-      <header style="background-color:#fff; border-bottom:1px solid #e0e0e0; padding:10px 0;">
+      <div style="background-color:#fff; border-bottom:1px solid #e0e0e0; padding:10px 0;">
          <div
             style="max-width:1200px; margin:auto; padding:0 15px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+            <!-- LEFT: CONTACT INFO -->
             <div class="contact-info"
                style="flex:1; font-size:13px; color:#ff8c00 ; display:flex; gap:20px; align-items:center;">
                <div><i class="fas fa-phone-alt"></i> +91-9876543210</div>
                <div><i class="fas fa-envelope"></i> support@pinddaanpuja.com</div>
             </div>
+            <!-- CENTER: LOGO -->
             <div style="flex:1; text-align:center;">
-               <a href="index.html"><img src="img/logo.png" alt="pinddaanpuja" style="height:40px;" /></a>
+               <img src="img/logo.png" alt="pinddaanpuja" style="height:40px;" />
+               <div style="font-size:12px; color:#a00; margin-top:5px; letter-spacing:1px;">
+
+               </div>
             </div>
+            <!-- RIGHT: LANGUAGE & SIGN IN -->
             <div style="flex:1; display:flex; justify-content:flex-end; align-items:center; gap:15px;"
                class="desktop-only">
                <select id="languageSwitcher"
@@ -47,151 +59,230 @@
                   <i class="fas fa-user"></i> Sign In
                </a>
             </div>
+            <!-- MOBILE TOGGLE (OPTIONAL) -->
+            <div class="mobile-toggle" style="display:none;">
+               <button onclick="toggleMenu()" style="background:none; border:none; font-size:26px;">☰</button>
+            </div>
          </div>
-      </header>
+      </div>
 
-      <!-- Navigation -->
-      <nav style="background-color:#f5f5f5; border-top:1px solid #ccc; border-bottom:1px solid #ccc;">
+      <!-- NAVIGATION BAR -->
+      <div class="responsive-padding2"
+         style="background-color:#f5f5f5; border-top:1px solid #ccc; border-bottom:1px solid #ccc;    padding: 10px">
          <div class="responsive-container"
             style="max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap;">
+            <!-- NAV LINKS -->
             <ul id="menuLinks" style="list-style:none; margin:0; padding:0; flex-wrap:wrap; align-items:center;"
                class="menu">
                <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
-                  <a href="index.html" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">Home</a>
+                  <a href="./index.html"
+                     style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">Home</a>
                </li>
                <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
-                  <a href="about.html" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">🙏 About Us</a>
+                  <a href="./about.html"
+                     style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">🙏
+                     About Us</a>
                </li>
                <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
-                  <a href="services.html" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">📜 Pooja Services</a>
+                  <a href="./services.html"
+                     style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">📜
+                     Pooja Services</a>
+               </li>
+
+               <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
+                  <a href="./gallery.html"
+                     style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">📸
+                     Gallery</a>
                </li>
                <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
-                  <a href="checkout.html" style="text-decoration:none; color:#a30000; font-weight:700; font-size:15px;">🛒 Checkout</a>
+                  <a href="./contact.html"
+                     style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">📞
+                     Contact</a>
                </li>
-               <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
-                  <a href="#gallery" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">📸 Gallery</a>
-               </li>
-               <li style="margin:0 30px; border-left:1px solid #333; padding-left:30px;">
-                  <a href="#contact" style="text-decoration:none; color:#1a1a1a; font-weight:500; font-size:15px;">📞 Contact</a>
+               <!-- MOBILE BOOK NOW (Only on small screens) -->
+               <li class="mobile-only" style="margin:15px auto 0; display:none;">
+                  <a href="#book"
+                     style="display:block; background-color:#a30000; color:#fff; padding:10px 20px; border-radius:5px; text-decoration:none; font-weight:600; text-align:center;">
+                     📿 Book Now
+                  </a>
                </li>
             </ul>
+            <!-- BOOK NOW (Desktop Only) -->
          </div>
-      </nav>
+      </div>
+      <section style="position: relative; 
+         background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)), 
+                     url('./images/cta.jpg') center center/cover no-repeat; 
+         height: 400px; 
+         display: flex; 
+         align-items: center; 
+         justify-content: center; 
+         font-family: 'Segoe UI', sans-serif; 
+         color: #fff; 
+         text-align: center;">
+   <div style="text-align: center; color: #fff; padding: 0 20px;">
+      <h1 style="font-size: 48px; font-weight: 700; margin-bottom: 10px; color: #ff8c39 !important;">
+         Checkout
+      </h1>
+      <p style="font-size: 18px; color: #f0f0f0; margin-bottom: 8px;">
+         <a href="index.html" style="color: #f8d57e; text-decoration: none;">Home</a> /
+         <a href="services.html" style="color: #f8d57e; text-decoration: none;">Services</a> /
+         Checkout
+      </p>
+   </div>
+</section>
+
 
       <!-- Checkout Section -->
-      <section style="background: #fdfdfd; padding: 40px 15px; font-family: 'Segoe UI', sans-serif; max-width: 1000px; margin: 40px auto; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
-         <div style="flex: 1 1 400px; min-width: 320px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
-            <h2 style="font-size: 32px; color: #a30000; margin-bottom: 20px;">Checkout</h2>
-            <form>
-               <div style="margin-bottom: 20px;">
-                  <label style="font-weight: 600; display: block; margin-bottom: 8px;">Shipping Method</label>
-                  <label style="margin-right: 20px; cursor: pointer;">
-                     <input type="radio" name="shipping" value="delivery" checked /> Delivery
-                  </label>
-                  <label style="cursor: pointer;">
-                     <input type="radio" name="shipping" value="pickup" /> Pick up
-                  </label>
-               </div>
-               <div style="margin-bottom: 15px;">
-                  <label for="fullName" style="font-weight: 600; display: block; margin-bottom: 8px;">Full Name *</label>
-                  <input type="text" id="fullName" name="fullName" placeholder="Enter full name" required
-                     style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" />
-               </div>
-               <div style="margin-bottom: 15px;">
-                  <label for="email" style="font-weight: 600; display: block; margin-bottom: 8px;">Email Address *</label>
-                  <input type="email" id="email" name="email" placeholder="Enter email address" required
-                     style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" />
-               </div>
-               <div style="margin-bottom: 15px;">
-                  <label for="phone" style="font-weight: 600; display: block; margin-bottom: 8px;">Phone Number *</label>
-                  <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required
-                     style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" />
-               </div>
-               <div style="margin-bottom: 15px;">
-                  <label for="country" style="font-weight: 600; display: block; margin-bottom: 8px;">Country *</label>
-                  <select id="country" name="country" required style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;">
-                     <option value="" disabled selected>Choose country</option>
-                     <option>India</option>
-                     <option>United States</option>
-                     <option>United Kingdom</option>
-                     <option>Canada</option>
-                     <option>Australia</option>
-                  </select>
-               </div>
-               <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
-                  <div style="flex: 1 1 150px;">
-                     <label for="city" style="font-weight: 600; display: block; margin-bottom: 8px;">City</label>
-                     <input type="text" id="city" name="city" placeholder="Enter city"
-                        style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" />
-                  </div>
-                  <div style="flex: 1 1 150px;">
-                     <label for="state" style="font-weight: 600; display: block; margin-bottom: 8px;">State</label>
-                     <input type="text" id="state" name="state" placeholder="Enter state"
-                        style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" />
-                  </div>
-                  <div style="flex: 1 1 100px;">
-                     <label for="zip" style="font-weight: 600; display: block; margin-bottom: 8px;">ZIP Code</label>
-                     <input type="text" id="zip" name="zip" placeholder="Enter ZIP code"
-                        style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc;" />
-                  </div>
-               </div>
-               <div style="margin-bottom: 15px;">
-                  <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                     <input type="checkbox" name="terms" required />
-                     I have read and agree to the Terms and Conditions
-                  </label>
-               </div>
-               <div style="text-align: center; margin-top: 20px;">
-                  <p style="font-size: 16px; color: #555; margin-bottom: 20px;">
-                     Payment will be securely processed through our trusted payment gateway after submitting your details.
-                  </p>
-                  <button type="submit"
-                     style="background: #a30000; color: white; padding: 14px 40px; font-size: 18px; border: none; border-radius: 30px; cursor: pointer; font-weight: bold;">
-                     Pay Now
-                  </button>
-               </div>
-            </form>
-         </div>
-         <div style="flex: 1 1 300px; min-width: 280px; background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.1);">
-            <h3 style="font-size: 24px; color: #a30000; margin-bottom: 20px;">Review your cart</h3>
-            <div style="border-top: 1px solid #ddd; padding-top: 10px;">
-               <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                  <div>
-                     <strong>Pind Daan – Varanasi</strong><br />
-                     <small>Quantity: 1</small>
-                  </div>
-                  <div>₹2,500</div>
-               </div>
-               <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                  <div>
-                     <strong>Narayan Bali</strong><br />
-                     <small>Quantity: 1</small>
-                  </div>
-                  <div>₹2,500</div>
-               </div>
-               <div style="display: flex; justify-content: space-between; margin-top: 20px; font-weight: 600; font-size: 18px;">
-                  <div>Subtotal</div>
-                  <div>₹5,000</div>
-               </div>
-               <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 16px;">
-                  <div>Shipping</div>
-                  <div>₹200</div>
-               </div>
-               <div style="display: flex; justify-content: space-between; margin-top: 10px; font-size: 16px; color: green;">
-                  <div>Discount</div>
-                  <div>-₹500</div>
-               </div>
-               <div style="display: flex; justify-content: space-between; margin-top: 20px; font-weight: 700; font-size: 20px;">
-                  <div>Total</div>
-                  <div>₹4,700</div>
-               </div>
-               <div style="margin-top: 20px; font-size: 14px; color: #555;">
-                  <i class="fas fa-lock"></i> Secure Checkout - SSL Encrypted<br />
-                  Ensuring your financial and personal details are secure during every transaction.
-               </div>
-            </div>
-         </div>
-      </section>
+    <section style="background: #fdfdfd; padding: 40px 15px; font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 40px auto; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
+
+  <!-- LEFT: Booking Form -->
+  <div style="flex: 1 1 480px; background: #fff; padding: 35px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+    <h2 style="font-size: 30px; color: #a30000; margin-bottom: 25px;">🙏 Book Your Puja</h2>
+    <form>
+      <!-- Service Type -->
+      <div style="margin-bottom: 20px;">
+        <label style="font-weight: 600; display: block; margin-bottom: 8px;">Choose Service</label>
+        <label style="margin-right: 20px; cursor: pointer;">
+          <input type="radio" name="service" value="home" checked /> At Home
+        </label>
+        <label style="cursor: pointer;">
+          <input type="radio" name="service" value="temple" /> At Sacred Location
+        </label>
+      </div>
+
+      <!-- Name -->
+      <div style="margin-bottom: 15px;">
+        <label for="fullName" style="font-weight: 600; display: block; margin-bottom: 8px;">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" />
+      </div>
+
+      <!-- Email -->
+      <div style="margin-bottom: 15px;">
+        <label for="email" style="font-weight: 600; display: block; margin-bottom: 8px;">Email Address *</label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" />
+      </div>
+
+      <!-- Phone -->
+      <div style="margin-bottom: 15px;">
+        <label for="phone" style="font-weight: 600; display: block; margin-bottom: 8px;">Phone Number *</label>
+        <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" />
+      </div>
+
+      <!-- State and City (Dynamic) -->
+      <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
+        <div style="flex: 1 1 200px;">
+          <label for="state" style="font-weight: 600; display: block; margin-bottom: 8px;">State *</label>
+          <select id="state" name="state" required onchange="populateCities(this.value)" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+            <option value="" disabled selected>Select state</option>
+            <option value="UP">Uttar Pradesh</option>
+            <option value="BR">Bihar</option>
+            <option value="UK">Uttarakhand</option>
+          </select>
+        </div>
+        <div style="flex: 1 1 200px;">
+          <label for="city" style="font-weight: 600; display: block; margin-bottom: 8px;">City *</label>
+          <select id="city" name="city" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+            <option value="" disabled selected>Select city</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Zip -->
+      <div style="margin-bottom: 15px;">
+        <label for="zip" style="font-weight: 600; display: block; margin-bottom: 8px;">ZIP Code</label>
+        <input type="text" id="zip" name="zip" placeholder="ZIP code" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" />
+      </div>
+
+      <!-- Terms -->
+      <div style="margin-bottom: 15px;">
+        <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+          <input type="checkbox" name="terms" required />
+          I agree to the Terms and Conditions
+        </label>
+      </div>
+
+      <!-- Submit -->
+      <div style="text-align: center; margin-top: 25px;">
+        <p style="font-size: 15px; color: #555; margin-bottom: 15px;">
+          🔐 Payment will be processed securely after booking confirmation.
+        </p>
+        <button type="submit" style="background: #a30000; color: #fff; padding: 14px 40px; font-size: 18px; border: none; border-radius: 30px; cursor: pointer;">
+          ✅ Confirm Booking
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- RIGHT: Cart -->
+  <div style="flex: 1 1 340px;     max-height: 566px; background: #fff; padding: 30px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+    <h3 style="font-size: 24px; color: #a30000; margin-bottom: 20px;">🛒 Review Your Sacred Cart</h3>
+    <div style="border-top: 1px solid #eee; padding-top: 10px;">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <div>
+          <strong>Pind Daan – Varanasi</strong><br />
+          <small>Qty: 1</small>
+        </div>
+        <div>₹2,500</div>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+        <div>
+          <strong>Narayan Bali Puja</strong><br />
+          <small>Qty: 1</small>
+        </div>
+        <div>₹2,500</div>
+      </div>
+      <div style="border-top: 1px solid #ddd; margin-top: 15px; padding-top: 15px;">
+        <div style="display: flex; justify-content: space-between; font-weight: 600;">
+          <div>Subtotal</div>
+          <div>₹5,000</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+          <div>Shipping (Dakshina)</div>
+          <div>₹200</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 8px; color: green;">
+          <div>Spiritual Discount</div>
+          <div>-₹500</div>
+        </div>
+        <div style="display: flex; justify-content: space-between; margin-top: 15px; font-weight: bold; font-size: 18px;">
+          <div>Total</div>
+          <div>₹4,700</div>
+        </div>
+      </div>
+      <div style="margin-top: 20px; font-size: 13px; color: #666;">
+        🔒 <strong>Secure Checkout:</strong> SSL Encrypted <br />
+        Your sacred details remain private & safe.
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- Dynamic City Population Script -->
+<script>
+  function populateCities(state) {
+    const citySelect = document.getElementById("city");
+    citySelect.innerHTML = '<option value="" disabled selected>Select city</option>';
+
+    const cities = {
+      UP: ['Varanasi', 'Prayagraj', 'Ayodhya', 'Mathura'],
+      BR: ['Gaya', 'Patna', 'Bhagalpur'],
+      UK: ['Haridwar', 'Rishikesh', 'Dehradun']
+    };
+
+    if (cities[state]) {
+      cities[state].forEach(city => {
+        const option = document.createElement("option");
+        option.value = city;
+        option.textContent = city;
+        citySelect.appendChild(option);
+      });
+    }
+  }
+</script>
+
+
 
       <!-- Footer -->
       <footer class="site-footer-two" style="margin-top: 40px;">
