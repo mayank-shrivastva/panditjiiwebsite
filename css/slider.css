@@ -22,7 +22,7 @@
   overflow: hidden;
   border-radius: 15px;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.9);
-  background: url('../banner1.jpg') center/cover no-repeat;
+  background: url('../banner.jpg') center/cover no-repeat;
   z-index: 1;
 }
 
@@ -120,7 +120,7 @@
   
   .slider {
     border-radius: 8px;
-    background: url('../banner1.jpg') center/cover no-repeat;
+    background: url('../banner.jpg') center/cover no-repeat;
     background-color: #000;
   }
 
@@ -147,7 +147,7 @@
 
   .slider {
     border-radius: 6px;
-    background: url('../banner1.jpg') center/contain no-repeat; /* Prevent cutting */
+    background: url('../banner.jpg') center/contain no-repeat; /* Prevent cutting */
     background-color: #000;
   }
 
