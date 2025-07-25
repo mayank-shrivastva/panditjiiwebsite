@@ -128,9 +128,12 @@
 
 
          <div class="slider">
-            <div class="shine"></div>
+
             <div class="slide" data-img="banner2.jpg"></div>
-            <div class="slide" data-img="banner2.jpg"></div>
+            <div class="slide" data-img="banner4.jpg"></div>
+            <div class="slide" data-img="banner4.jpg"></div>
+            <div class="slide" data-img="banner4.jpg"></div>
+            <div class="slide" data-img="banner4.jpg"></div>
          </div>
 
          <!-- GSAP -->
@@ -138,20 +141,14 @@
          <script>
             const sliderSection = document.querySelector('.hero-slider');
             const slides = sliderSection.querySelectorAll('.slide');
-            let current = -1;
+            let current = 0; // Start from 0
 
-            // 🔁 Get responsive grid size based on screen width
             function getGridSize() {
-               if (window.innerWidth <= 480) {
-                  return { cols: 2, rows: 2 };
-               } else if (window.innerWidth <= 768) {
-                  return { cols: 3, rows: 3 };
-               } else {
-                  return { cols: 6, rows: 4 };
-               }
+               if (window.innerWidth <= 480) return { cols: 2, rows: 2 };
+               else if (window.innerWidth <= 768) return { cols: 3, rows: 3 };
+               else return { cols: 6, rows: 4 };
             }
 
-            // 🔄 Create image tiles with dynamic cols & rows
             function createTiles(slide) {
                slide.innerHTML = '';
                const img = slide.getAttribute('data-img');
@@ -169,10 +166,8 @@
                }
             }
 
-            // 📦 Create tiles for all slides
             slides.forEach(createTiles);
 
-            // 🎞️ Slider animation function
             function showSlide(index) {
                const nextSlide = slides[index];
                nextSlide.classList.add('active');
@@ -199,20 +194,23 @@
                );
 
                setTimeout(() => {
-                  current = index;
                   sliderSection.querySelector('.slider').style.background =
                      `url(${nextSlide.getAttribute('data-img')}) center/cover no-repeat`;
                   nextSlide.classList.remove('active');
+                  current = index;
                }, 1500);
             }
 
-            // 🔁 Auto-change slides every 5 seconds
+            // ✅ Call showSlide immediately for first load
+            showSlide(current);
+
+            // 🔁 Auto-slide every 5 sec (optional)
             setInterval(() => {
                let next = (current + 1) % slides.length;
                showSlide(next);
             }, 5000);
 
-            // 🌸 Falling Flowers + Leaves
+            // 🌸 Falling animation
             const elements = ['🌸', '🌺', '🍃', '🍂', '🌼', '💮'];
 
             function createFalling() {
@@ -225,13 +223,12 @@
                el.style.transform = `rotate(${Math.random() * 360}deg)`;
                sliderSection.appendChild(el);
 
-               setTimeout(() => {
-                  el.remove();
-               }, 8000);
+               setTimeout(() => el.remove(), 8000);
             }
 
             setInterval(createFalling, 350);
          </script>
+
 
       </section>
       <section style="padding: 30px 15px; background: #fffaf2; font-family: 'Segoe UI', sans-serif;">
@@ -305,8 +302,7 @@
 
          </div>
       </section>
-      <section
-         style="background: #fff; padding: 60px 20px; font-family: 'Segoe UI', sans-serif; text-align: center;">
+      <section style="background: #fff; padding: 60px 20px; font-family: 'Segoe UI', sans-serif; text-align: center;">
          <div style="max-width: 800px; margin: auto;">
 
             <h2 style="font-size: 30px; color: #a33e00; font-weight: 700; margin-bottom: 15px; position: relative;">
@@ -416,10 +412,10 @@
                            <span style="color: #ff9900; font-size: 14px;">⭐ 4.7 (120)</span>
                         </div>
                         <div style="display: flex; gap: 10px;">
-                           <a href="checkout.html" 
-   style="flex: 1; background: #a30000; color: white; border: none; padding: 10px; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;">
-   Book Now
-</a>
+                           <a href="checkout.html"
+                              style="flex: 1; background: #a30000; color: white; border: none; padding: 10px; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;">
+                              Book Now
+                           </a>
 
 
                         </div>
@@ -441,10 +437,10 @@
                            <span style="color: #ff9900; font-size: 14px;">⭐ 4.7 (120)</span>
                         </div>
                         <div style="display: flex; gap: 10px;">
-                          <a href="checkout.html" 
-   style="flex: 1; background: #a30000; color: white; border: none; padding: 10px; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;">
-   Book Now
-</a>
+                           <a href="checkout.html"
+                              style="flex: 1; background: #a30000; color: white; border: none; padding: 10px; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;">
+                              Book Now
+                           </a>
 
 
                         </div>
@@ -466,10 +462,10 @@
                            <span style="color: #ff9900; font-size: 14px;">⭐ 4.7 (120)</span>
                         </div>
                         <div style="display: flex; gap: 10px;">
-                           <a href="checkout.html" 
-   style="flex: 1; background: #a30000; color: white; border: none; padding: 10px; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;">
-   Book Now
-</a>
+                           <a href="checkout.html"
+                              style="flex: 1; background: #a30000; color: white; border: none; padding: 10px; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;">
+                              Book Now
+                           </a>
 
 
                         </div>
@@ -491,10 +487,10 @@
                            <span style="color: #ff9900; font-size: 14px;">⭐ 4.7 (120)</span>
                         </div>
                         <div style="display: flex; gap: 10px;">
-                          <a href="checkout.html" 
-   style="flex: 1; background: #a30000; color: white; border: none; padding: 10px; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;">
-   Book Now
-</a>
+                           <a href="checkout.html"
+                              style="flex: 1; background: #a30000; color: white; border: none; padding: 10px; border-radius: 30px; font-weight: bold; cursor: pointer; text-align: center; text-decoration: none; display: inline-block;">
+                              Book Now
+                           </a>
 
 
                         </div>
