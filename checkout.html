@@ -134,12 +134,12 @@
 
 
       <!-- Checkout Section -->
-    <section style="background: #fdfdfd; padding: 40px 15px; font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 40px auto; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
+ <section style="background: #fdfdfd; padding: 40px 15px; font-family: 'Segoe UI', sans-serif; max-width: 1100px; margin: 40px auto; display: flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
 
   <!-- LEFT: Booking Form -->
   <div style="flex: 1 1 480px; background: #fff; padding: 35px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
     <h2 style="font-size: 30px; color: #a30000; margin-bottom: 25px;">🙏 Book Your Puja</h2>
-    <form>
+    <form id="bookingForm">
       <!-- Service Type -->
       <div style="margin-bottom: 20px;">
         <label style="font-weight: 600; display: block; margin-bottom: 8px;">Choose Service</label>
@@ -169,11 +169,11 @@
         <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" />
       </div>
 
-      <!-- State and City (Dynamic) -->
+      <!-- State and City -->
       <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 15px;">
         <div style="flex: 1 1 200px;">
           <label for="state" style="font-weight: 600; display: block; margin-bottom: 8px;">State *</label>
-          <select id="state" name="state" required onchange="populateCities(this.value)" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;">
+          <select id="state" name="state" required style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" onchange="populateCities(this.value)">
             <option value="" disabled selected>Select state</option>
             <option value="UP">Uttar Pradesh</option>
             <option value="BR">Bihar</option>
@@ -188,7 +188,7 @@
         </div>
       </div>
 
-      <!-- Zip -->
+      <!-- ZIP -->
       <div style="margin-bottom: 15px;">
         <label for="zip" style="font-weight: 600; display: block; margin-bottom: 8px;">ZIP Code</label>
         <input type="text" id="zip" name="zip" placeholder="ZIP code" style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #ccc;" />
@@ -207,15 +207,28 @@
         <p style="font-size: 15px; color: #555; margin-bottom: 15px;">
           🔐 Payment will be processed securely after booking confirmation.
         </p>
-        <button type="submit" style="background: #a30000; color: #fff; padding: 14px 40px; font-size: 18px; border: none; border-radius: 30px; cursor: pointer;">
+        <button type="submit" id="confirmBtn" style="background: #a30000; color: #fff; padding: 14px 40px; font-size: 18px; border: none; border-radius: 30px; cursor: pointer;">
           ✅ Confirm Booking
+        </button>
+      </div>
+
+      <!-- QR Code Section -->
+      <div id="qrSection" style="display: none; margin-top: 30px; text-align: center;">
+        <h3 style="color: #a30000; margin-bottom: 10px;">📲 Scan to Pay</h3>
+        <img src="./images/payment/qr-code.png" alt="QR Code" style="width: 200px; height: 200px; border: 1px solid #ccc; border-radius: 8px;" />
+        <p style="margin-top: 10px; font-size: 14px; color: #444;">UPI ID: <strong>yourupi@bank</strong></p>
+        <p style="font-size: 13px; color: green;">Please complete your payment and we will confirm via WhatsApp/SMS.</p>
+
+        <!-- NEW: I’ve Paid Button -->
+        <button onclick="afterPayment()" style="margin-top: 20px; background: green; color: white; padding: 10px 25px; border: none; border-radius: 20px; cursor: pointer;">
+          ✅ I’ve Paid
         </button>
       </div>
     </form>
   </div>
 
   <!-- RIGHT: Cart -->
-  <div style="flex: 1 1 340px;     max-height: 566px; background: #fff; padding: 30px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
+  <div style="flex: 1 1 340px; max-height: 566px; background: #fff; padding: 30px; border-radius: 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.08);">
     <h3 style="font-size: 24px; color: #a30000; margin-bottom: 20px;">🛒 Review Your Sacred Cart</h3>
     <div style="border-top: 1px solid #eee; padding-top: 10px;">
       <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
@@ -256,21 +269,36 @@
       </div>
     </div>
   </div>
-
 </section>
 
-<!-- Dynamic City Population Script -->
+<!-- SCRIPT: QR Handling & Payment -->
+<script>
+  document.getElementById("bookingForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    document.getElementById("qrSection").style.display = "block";
+    const btn = document.getElementById("confirmBtn");
+    btn.disabled = true;
+    btn.innerText = "✔️ Awaiting Payment...";
+    document.getElementById("qrSection").scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  function afterPayment() {
+    alert("✅ Payment received. Your booking is now under review. You will receive confirmation shortly via WhatsApp/SMS.");
+    // Optional: Redirect to thank you page
+    // window.location.href = 'thankyou.html';
+  }
+</script>
+
+<!-- SCRIPT: Populate Cities -->
 <script>
   function populateCities(state) {
     const citySelect = document.getElementById("city");
     citySelect.innerHTML = '<option value="" disabled selected>Select city</option>';
-
     const cities = {
       UP: ['Varanasi', 'Prayagraj', 'Ayodhya', 'Mathura'],
       BR: ['Gaya', 'Patna', 'Bhagalpur'],
       UK: ['Haridwar', 'Rishikesh', 'Dehradun']
     };
-
     if (cities[state]) {
       cities[state].forEach(city => {
         const option = document.createElement("option");
@@ -281,6 +309,7 @@
     }
   }
 </script>
+
 
 
 
